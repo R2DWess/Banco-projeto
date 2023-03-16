@@ -8,23 +8,24 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+
 @Entity
-@Table(name="tbi_conta")
+@Table(name = "tbi_conta")
 public class Conta {
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "numero_conta")
 	private int numero;
 	private int agencia;
-	
-	// 1 - conta pessoa fisica
-	// 2 - conta estudantil
-	// 3 - conta salario
+
+// 1 - conta pessoa fisica
+// 2 - conta estudantil
+// 3 - conta salario
 	@Column(name = "tipo_conta")
 	private int tipo;
 	private double saldo;
-@ManyToOne
-@JoinColumn(name="id_cliente")
+	@ManyToOne
+	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
 	public int getNumero() {

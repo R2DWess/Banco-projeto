@@ -24,11 +24,11 @@ public class MovimentacaoController {
 
 	@Autowired
 	private IMovimentacaoService movimentacaoService;
-	
+
 	@GetMapping("/extrato")
-	public ResponseEntity<?> extrato(@RequestParam int idConta, @RequestParam LocalDate dataInicial, 
-			@RequestParam LocalDate dataFinal){
-		ArrayList<Movimentacao> movimentacoes =movimentacaoService.pegarExtrato(idConta, dataInicial, dataFinal); 
+	public ResponseEntity<?> extrato(@RequestParam int idConta, @RequestParam LocalDate dataInicial,
+			@RequestParam LocalDate dataFinal) {
+		ArrayList<Movimentacao> movimentacoes = movimentacaoService.pegarExtrato(idConta, dataInicial, dataFinal);
 		return ResponseEntity.ok().body(movimentacoes);
 	}
 

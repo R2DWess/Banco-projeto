@@ -18,49 +18,30 @@ import projetofinal.com.br.banco.service.IClienteService;
 @RestController
 @RequestMapping("/clientes")
 public class ClienteController {
- 
-    @Autowired
-private IClienteService service;
- 
-    @GetMapping
-    public ResponseEntity<ArrayList<Cliente>> listarClientes() {
-ArrayList<Cliente> cliente = service.recuperarTodos();
-        return ResponseEntity.ok(cliente);
-    }
- 
-    @GetMapping("/{id}")
-    public ResponseEntity<Cliente> buscarCliente(@PathVariable int id) {
-        Cliente cliente = service.recuperarPeloId(id);
-        if (cliente != null) {
-            return ResponseEntity.ok(cliente);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
- 
-    @PostMapping
-    public ResponseEntity<Cliente> adicionarCliente(@RequestBody Cliente cliente) {
-        Cliente clienteAdicionado = service.cadastrarCliente(cliente);
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteAdicionado);
-    }
- 
-//    @PutMapping("/{id}")
-//    public ResponseEntity<Cliente> atualizarCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
-//        Cliente clienteAtualizado = clienteService.atualizarCliente(id, cliente);
-//        if (clienteAtualizado != null) {
-//            return ResponseEntity.ok(clienteAtualizado);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-// 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<Void> removerCliente(@PathVariable Long id) {
-//        boolean clienteRemovido = clienteService.removerCliente(id);
-//        if (clienteRemovido) {
-//            return ResponseEntity.noContent().build();
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+
+	@Autowired
+	private IClienteService service;
+
+	@GetMapping
+	public ResponseEntity<ArrayList<Cliente>> listarClientes() {
+		ArrayList<Cliente> cliente = service.recuperarTodos();
+		return ResponseEntity.ok(cliente);
+	}
+
+	@GetMapping("/{id}")
+	public ResponseEntity<Cliente> buscarCliente(@PathVariable int id) {
+		Cliente cliente = service.recuperarPeloId(id);
+		if (cliente != null) {
+			return ResponseEntity.ok(cliente);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+
+	@PostMapping
+	public ResponseEntity<Cliente> adicionarCliente(@RequestBody Cliente cliente) {
+		Cliente clienteAdicionado = service.cadastrarCliente(cliente);
+		return ResponseEntity.status(HttpStatus.CREATED).body(clienteAdicionado);
+	}
+
 }

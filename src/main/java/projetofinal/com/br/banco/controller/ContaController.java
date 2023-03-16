@@ -20,37 +20,36 @@ import projetofinal.com.br.banco.service.IContaService;
 
 public class ContaController {
 
-    @Autowired
-    private IContaService contaService;
+	@Autowired
+	private IContaService contaService;
 
-    @GetMapping("/contas/{numero}")
-    public ResponseEntity<Conta> buscarPorNumero(@PathVariable int numero) {
-        Conta conta = contaService.recuperarPeloNumero(numero);
-        if (conta != null) {
-            return ResponseEntity.ok(conta);
-        }
-        return ResponseEntity.notFound().build();
-    }
+	@GetMapping("/contas/{numero}")
+	public ResponseEntity<Conta> buscarPorNumero(@PathVariable int numero) {
+		Conta conta = contaService.recuperarPeloNumero(numero);
+		if (conta != null) {
+			return ResponseEntity.ok(conta);
+		}
+		return ResponseEntity.notFound().build();
+	}
 
-    @GetMapping("/contas/cliente/{idCliente}")
-    public ResponseEntity<List<Conta>> buscarPorCliente(@PathVariable int idCliente) {
-        List<Conta> contas = contaService.recuperarContaPeloCliente(idCliente);
-        if (!contas.isEmpty()) {
-            return ResponseEntity.ok(contas);
-        }
-        return ResponseEntity.notFound().build();
-    }
+	@GetMapping("/contas/cliente/{idCliente}")
+	public ResponseEntity<List<Conta>> buscarPorCliente(@PathVariable int idCliente) {
+		List<Conta> contas = contaService.recuperarContaPeloCliente(idCliente);
+		if (!contas.isEmpty()) {
+			return ResponseEntity.ok(contas);
+		}
+		return ResponseEntity.notFound().build();
+	}
 
-    @PostMapping("/contas")
-    public ResponseEntity<Conta> adicionarConta(@RequestBody Conta conta) {
-        Conta contaSalva = contaService.cadastrarConta(conta);
-        if (contaSalva != null) {
-            URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{numero}")
-                    .buildAndExpand(contaSalva.getNumero()).toUri();
-            return ResponseEntity.created(location).body(contaSalva);
-        }
-        return ResponseEntity.badRequest().build();
-    }
-    
-    
+	@PostMapping("/contas")
+	public ResponseEntity<Conta> adicionarConta(@RequestBody Conta conta) {
+		Conta contaSalva = contaService.cadastrarConta(conta);
+		if (contaSalva != null) {
+			URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{numero}")
+					.buildAndExpand(contaSalva.getNumero()).toUri();
+			return ResponseEntity.created(location).body(contaSalva);
+		}
+		return ResponseEntity.badRequest().build();
+	}
+
 }

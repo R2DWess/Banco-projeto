@@ -14,8 +14,7 @@ public interface MovimentacaoRepository extends CrudRepository<Movimentacao, Int
 	@Query("from Movimentacao where conta.numero= :numero")
 	public ArrayList<Movimentacao> recuperarTodas(int numero);
 
-	//@Query("from Movimentacao where conta.numero = :idConta and :dataInicial between :dataFinal")
-	//public ArrayList<Movimentacao> pegarExtrato(int idConta, LocalDate dataInicial, LocalDate dataFinal);
-	public ArrayList<Movimentacao> findByContaNumeroAndDataOperacaoBetween(int idConta, LocalDate dataInicial, LocalDate dataFinal);
+	public ArrayList<Movimentacao> findByContaNumeroAndDataOperacaoBetween(int idConta, LocalDate dataInicial,
+			LocalDate dataFinal);
 
 }

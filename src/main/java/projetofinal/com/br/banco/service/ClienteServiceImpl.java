@@ -33,10 +33,4 @@ public class ClienteServiceImpl implements IClienteService {
 		return clienteRepository.save(cliente);
 	}
 
-	@Override
-	public boolean transferirValores(int contaOrigem, int contaDestino, double valor) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
